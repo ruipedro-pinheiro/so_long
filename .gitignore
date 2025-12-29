@@ -1,0 +1,11 @@
+# Object files
+obj/
+*.o
+
+# Archives
+*.tgz
+
+# Editor
+*.swp
+*~
+.DS_Store
