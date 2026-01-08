@@ -34,13 +34,6 @@ LIBFT_DIR	= libft
 
 # Add your source files here
 SRCS		= $(SRC_DIR)/main.c \
-			  $(SRC_DIR)/parse_map.c \
-			  $(SRC_DIR)/validate_map.c \
-			  $(SRC_DIR)/flood_fill.c \
-			  $(SRC_DIR)/graphics.c \
-			  $(SRC_DIR)/render.c \
-			  $(SRC_DIR)/input.c \
-			  $(SRC_DIR)/utils.c
 
 SRCS_BONUS	= $(SRC_DIR)/main_bonus.c
 
