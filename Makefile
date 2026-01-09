@@ -25,7 +25,7 @@ MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 SRC_DIR		= src
 OBJ_DIR		= obj
-INC_DIR		= includes
+INC_DIR		= include
 LIBFT_DIR	= libft
 
 # ═══════════════════════════════════════════════════════════════════════════════

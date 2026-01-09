@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinheir <rpinhier@student.42Lausanne.ch>  +#+  +:+       +#+        */
+/*   By: rpinheir <rpinheir@student.42lausanne.ch>    +#+  +:+
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 13:49:26 by rpinheir          #+#    #+#             */
-/*   Updated: 2026/01/06 13:54:47 by rpinheir         ###   ########.ch       */
+/*   Created: 2026/01/09 12:28:53 by rpinheir          #+#    #+#             */
+/*   Updated: 2026/01/09 12:29:13 by rpinheir         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +16,22 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}			t_img;
+
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	int		cur_img;
+}			t_data;
 
 #endif
