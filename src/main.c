@@ -53,7 +53,7 @@ int	render(t_data *data)
 	return (0);
 }
 
-int	main(void)
+int	graphic_management(void)
 {
 	t_data	data;
 
@@ -61,7 +61,7 @@ int	main(void)
 	if (data.mlx_ptr == NULL)
 		return (MLX_ERROR);
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-			"my window");
+			"So_long: Stardew Valley");
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
@@ -77,4 +77,12 @@ int	main(void)
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc < 2)
+		write(2, "Map not available\n", 18);
+	ft_printf("Nom du programme: %s \n", *argv)
 }
