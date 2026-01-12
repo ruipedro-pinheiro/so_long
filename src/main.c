@@ -79,10 +79,28 @@ int	graphic_management(void)
 	free(data.mlx_ptr);
 	return (0);
 }
+void	map_validator(int fd)
+{
+	char	**map;
+	int		i;
 
+	map = 0;
+	i = 0;
+	while (1)
+	{
+		if (get_next_line(fd) == NULL)
+			break ;
+		map[i] = get_next_line(fd);
+		i++;
+	}
+}
 int	main(int argc, char **argv)
 {
+	int	fd;
+
+	fd = open("..maps/map.ber", O_RDONLY) map_validator(fd);
 	if (argc < 2)
 		write(2, "Map not available\n", 18);
 	ft_printf("Nom du programme: %s \n", *argv);
+	graphic_management();
 }
