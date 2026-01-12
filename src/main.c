@@ -84,5 +84,5 @@ int	main(int argc, char **argv)
 {
 	if (argc < 2)
 		write(2, "Map not available\n", 18);
-	ft_printf("Nom du programme: %s \n", *argv)
+	ft_printf("Nom du programme: %s \n", *argv);
 }

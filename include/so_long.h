@@ -16,6 +16,7 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include <stdbool.h>
 
 typedef struct s_img
 {

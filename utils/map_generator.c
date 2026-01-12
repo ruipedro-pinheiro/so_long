@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "../libft/libft.h"
+#include <stdbool.h>
 
 int	map_generator(void)
 {
@@ -18,13 +20,18 @@ int	map_generator(void)
 }
 bool	string_check(char *string)
 {
-	if (ft_strchr(*string, "Y") == 0)
+	if (ft_strchr(string, 'Y') != '\0' || ft_strchr(string, 'Y'))
+		return (true);
+	if (ft_strnstr(string, "YES", ft_strlen(string)))
+		return (true);
+	return (false);
 }
 int	main(void)
 {
-	char	**buffer;
+	char	**input;
 
 	ft_printf("Do you want a valid map ? Say no for debug or test purposes");
-	read(0, buffer, 8);
+	read(0, input, 8);
+	string_check(*input);
 	map_generator();
 }
