@@ -11,7 +11,7 @@
 <!-- *********************************************************************** -->
 
 ###### *This project has been created as part of the 42 curriculum by rpinheir*
-
+![Banner SO_LONG](./assets/banner.png)
 # SO_LONG
 ## Description
 This project is all about learning to do visual programs using a lib for x-windows on linux. More specifically, i must build a game made from C using minilibX, it must have an exit, one player, one consumable/item. And most importantly a parser of maps, and make sure they are valid following all requirements (flood fill algorithm per example), and also be possible to close with escape key and also red button from window decorations.
