@@ -48,8 +48,8 @@ int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
-		0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 32,
+		32);
 	return (0);
 }
 
@@ -72,7 +72,7 @@ int	graphic_management(void)
 		return (MLX_ERROR);
 	}
 	data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr,
-			"../assets/Stone_ground.xpm", &width, &height);
+			"assets/Stone_ground.xpm", &width, &height);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
