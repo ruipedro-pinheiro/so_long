@@ -16,7 +16,12 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
 
 typedef struct s_img
 {
@@ -36,5 +41,7 @@ typedef struct s_data
 	t_img	img;
 	int		cur_img;
 }			t_data;
+
+bool		map_validator(int fd);
 
 #endif

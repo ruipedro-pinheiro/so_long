@@ -12,20 +12,9 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-#include <X11/X.h>
-#include <X11/keysym.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 300
-
-#define MLX_ERROR 1
-
-#define RED_PIXEL 0xFF0000
-#define GREEN_PIXEL 0xFF00
-#define WHITE_PIXEL 0xFFFFFF
 
 int	handle_keypress(int keysym, t_data *data)
 {
@@ -63,13 +52,13 @@ int	graphic_management(void)
 	width = 32;
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
-		return (MLX_ERROR);
+		return (1);
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
 			"So_long: Stardew Valley");
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
-		return (MLX_ERROR);
+		return (1);
 	}
 	data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr,
 			"assets/Stone_ground.xpm", &width, &height);
@@ -84,28 +73,15 @@ int	graphic_management(void)
 	free(data.mlx_ptr);
 	return (0);
 }
-void	map_validator(int fd)
-{
-	char	**map;
-	int		i;
 
-	map = 0;
-	i = 0;
-	while (1)
-	{
-		if (get_next_line(fd) == NULL)
-			break ;
-		map[i] = get_next_line(fd);
-		i++;
-	}
-}
 int	main(int argc, char **argv)
 {
 	int	fd;
 
 	fd = open("..maps/map.ber", O_RDONLY);
-	map_validator(fd);
-	if (argc < 2)
+	if (!map_validator(fd))
+		return (ft_printf("Map not valid."));
+	if (argc < 1)
 		write(2, "Map not available\n", 18);
 	ft_printf("Nom du programme: %s \n", *argv);
 	graphic_management();
