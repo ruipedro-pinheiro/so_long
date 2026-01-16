@@ -13,8 +13,8 @@
 
 #include "../include/so_long.h"
 
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 300
+#define WINDOW_WIDTH 735
+#define WINDOW_HEIGHT 490
 
 int	handle_keypress(int keysym, t_data *data)
 {
@@ -35,10 +35,26 @@ int	close_window(t_data *data)
 
 int	render(t_data *data)
 {
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
 	if (data->win_ptr == NULL)
 		return (1);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 32,
-		32);
+	while (1)
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
+			x, y);
+		x = x + 49;
+		if (x >= 735)
+		{
+			x = 0;
+			y = y + 49;
+		}
+		if (y >= 490)
+			break ;
+	}
 	return (0);
 }
 
