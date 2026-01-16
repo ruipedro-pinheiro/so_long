@@ -15,27 +15,33 @@
 char	**map_parser(int fd)
 {
 	char	**map;
-	int		i;
+	char	*line;
+	char	*tmp;
+	char	*big;
 
-	i = 1;
-	map[0][0] = 'C';
-	ft_strjoin(*map, get_next_line(fd));
-	if (fd == 0)
-		return (NULL);
-	map[0] = ft_strdup(get_next_line(fd));
-	while (i++)
+	big = ft_strdup("");
+	while ((line = get_next_line(fd)))
 	{
-		map[i] = ft_strdup(get_next_line(fd));
-		if (map[i][0] == '\0')
-			break ;
+		tmp = big;
+		big = ft_strjoin(big, line);
+		free(tmp);
+		free(line);
 	}
+	map = ft_split(big, '\n');
+	free(big);
 	return (map);
 }
 bool	map_validator(int fd)
 {
 	char	**map;
+	int		i;
 
+	i = 0;
 	map = map_parser(fd);
-	ft_printf("Map: %s \n", map);
+	while (map[i])
+	{
+		ft_printf("%s\n", map[i]);
+		i++;
+	}
 	return (true);
 }

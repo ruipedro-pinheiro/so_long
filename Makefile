@@ -13,7 +13,7 @@ NAME_BONUS	= so_long_bonus
 #  COMPILER & FLAGS
 # ═══════════════════════════════════════════════════════════════════════════════
 
-CC			= cc
+CC			= clang
 CFLAGS		= -Wall -Wextra -Werror
 MLX_DIR		= minilibx-linux
 MLX			= $(MLX_DIR)/libmlx.a
