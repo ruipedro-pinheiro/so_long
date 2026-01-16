@@ -102,9 +102,9 @@ int	main(int argc, char **argv)
 	map_validator(fd);
 	if (argc <= 1)
 	{
-		write(2, "Map not available\n", 18);
+		write(2, "Please give map in argument \n", 30);
 		return (0);
 	}
-	ft_printf("Nom du programme: %s \n", *argv);
+	ft_printf("%s \n", *argv);
 	graphic_management();
 }
