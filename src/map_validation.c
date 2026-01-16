@@ -18,6 +18,7 @@ char	**map_parser(int fd)
 	char	*line;
 	char	*tmp;
 	char	*big;
+	int		i;
 
 	big = ft_strdup("");
 	while ((line = get_next_line(fd)))
@@ -29,19 +30,16 @@ char	**map_parser(int fd)
 	}
 	map = ft_split(big, '\n');
 	free(big);
-	return (map);
-}
-bool	map_validator(int fd)
-{
-	char	**map;
-	int		i;
-
 	i = 0;
-	map = map_parser(fd);
 	while (map[i])
 	{
 		ft_printf("%s\n", map[i]);
 		i++;
 	}
+	return (map);
+}
+bool	map_validator(int fd)
+{
+	map_parser(fd);
 	return (true);
 }

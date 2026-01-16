@@ -18,12 +18,6 @@
 - [ ] dwarf animation frames (optional)
 
 ### WALLS (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Tilesets_-_Sewer.png`)
-#### Done (PNG in assets/Walls/)
-- [x] top-wall.png
-- [x] left-wall.png
-- [x] right-wall.png
-- [x] left-corner-wall.png (top-left outer)
-- [x] right-corner-wall.png (top-right outer)
 
 #### TODO - Outer corners
 - [ ] bottom-left-corner.png
@@ -36,8 +30,7 @@
 - [ ] inner-bottom-right.png
 
 ### FLOOR (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Tilesets_-_Sewer.png`)
-- [x] ground.png (done in assets/)
-
+- [ ] Make floor less repetitive by making a fake random and display sometimes different ground tiles; like if x % 1/4 == display type-1, or type-2 etc...
 ### EXIT (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Tilesets_-_Sewer.png`)
 - [ ] exit.png (ladder from sewer tileset)
 

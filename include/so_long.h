@@ -41,5 +41,6 @@ typedef struct s_data
 }			t_data;
 
 bool		map_validator(int fd);
+char		**map_parser(int fd);
 
 #endif

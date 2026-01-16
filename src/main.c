@@ -13,9 +13,6 @@
 
 #include "../include/so_long.h"
 
-#define WINDOW_WIDTH 735
-#define WINDOW_HEIGHT 490
-
 int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
@@ -32,8 +29,16 @@ int	close_window(t_data *data)
 	data->win_ptr = NULL;
 	return (0);
 }
+void	display_sprite(t_data *data, int fd, int y, int x)
+{
+	char	**map;
 
-int	render(t_data *data)
+	map = map_parser(fd);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x,
+		y);
+}
+
+int	render(t_data *data, int fd)
 {
 	int	y;
 	int	x;
@@ -44,15 +49,14 @@ int	render(t_data *data)
 		return (1);
 	while (1)
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
-			x, y);
-		x = x + 49;
-		if (x >= 735)
+		display_sprite(data, fd, y, x);
+		x = x + 128;
+		if (x >= 1920)
 		{
 			x = 0;
-			y = y + 49;
+			y = y + 128;
 		}
-		if (y >= 490)
+		if (y >= 1280)
 			break ;
 	}
 	return (0);
@@ -69,7 +73,7 @@ int	graphic_management(void)
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
+	data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1280,
 			"So_long: Stardew Valley");
 	if (data.win_ptr == NULL)
 	{
