@@ -12,55 +12,28 @@
 
 #include "../include/so_long.h"
 
-bool	map_vertical_validation(int i, int j, char **map, int end)
-{
-	if (j == 0 && map[i][j] != '1')
-		return (false);
-	if (j == end && map[i][j] != '1')
-		return (false);
-	return (true);
-}
-
-bool	map_border(char **map, int fd)
-{
-	int	i;
-	int	j;
-	int	end;
-
-	end = ft_strlen(get_next_line(fd)) - 1;
-	i = 0;
-	j = 0;
-	while (j <= end && map[i][j])
-	{
-		if (i == 0)
-		{
-			while (j <= end)
-			{
-				if (map[i][j] != '1')
-					return (false);
-				j++;
-			}
-		}
-		i++;
-	}
-	return (true);
-}
-
-bool	map_validator(int fd)
+char	**map_parser(int fd)
 {
 	char	**map;
 	int		i;
 
-	map = 0;
 	i = 0;
-	while (1)
+	map = NULL;
+	if (fd == 0)
+		return (NULL);
+	while (i++)
 	{
-		if (get_next_line(fd) == NULL)
+		ft_strjoin(*map, get_next_line(fd));
+		if (map[i][0] == '\0')
 			break ;
-		map[i] = get_next_line(fd);
-		i++;
 	}
-	if (!map_border(map, fd))
-		return (false);
+	return (map);
+}
+bool	map_validator(int fd)
+{
+	char	**map;
+
+	map = map_parser(fd);
+	ft_printf("Map: %s \n", map);
 	return (true);
 }

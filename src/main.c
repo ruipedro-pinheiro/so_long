@@ -60,8 +60,8 @@ int	graphic_management(void)
 		free(data.win_ptr);
 		return (1);
 	}
-	data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr,
-			"assets/Stone_ground.xpm", &width, &height);
+	data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, "assets/ground.xpm",
+			&width, &height);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
@@ -78,11 +78,13 @@ int	main(int argc, char **argv)
 {
 	int	fd;
 
-	fd = open("..maps/map.ber", O_RDONLY);
-	if (!map_validator(fd))
-		return (ft_printf("Map not valid."));
-	if (argc < 1)
+	fd = open(argv[1], O_RDONLY);
+	map_validator(fd);
+	if (argc <= 1)
+	{
 		write(2, "Map not available\n", 18);
+		return (0);
+	}
 	ft_printf("Nom du programme: %s \n", *argv);
 	graphic_management();
 }
