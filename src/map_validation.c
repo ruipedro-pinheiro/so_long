@@ -17,13 +17,15 @@ char	**map_parser(int fd)
 	char	**map;
 	int		i;
 
-	i = 0;
-	map = NULL;
+	i = 1;
+	map[0][0] = 'C';
+	ft_strjoin(*map, get_next_line(fd));
 	if (fd == 0)
 		return (NULL);
+	map[0] = ft_strdup(get_next_line(fd));
 	while (i++)
 	{
-		ft_strjoin(*map, get_next_line(fd));
+		map[i] = ft_strdup(get_next_line(fd));
 		if (map[i][0] == '\0')
 			break ;
 	}
