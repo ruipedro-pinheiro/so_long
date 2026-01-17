@@ -29,16 +29,15 @@ int	close_window(t_data *data)
 	data->win_ptr = NULL;
 	return (0);
 }
-void	display_sprite(t_data *data, int fd, int y, int x)
+void	display_sprite(t_data *data, int y, int x)
 {
-	char	**map;
-
-	map = map_parser(fd);
+	// char	**map;
+	// map = ft_split(map_parser(fd), '\n');
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, x,
 		y);
 }
 
-int	render(t_data *data, int fd)
+int	render(t_data *data)
 {
 	int	y;
 	int	x;
@@ -49,7 +48,7 @@ int	render(t_data *data, int fd)
 		return (1);
 	while (1)
 	{
-		display_sprite(data, fd, y, x);
+		display_sprite(data, y, x);
 		x = x + 128;
 		if (x >= 1920)
 		{
@@ -102,7 +101,7 @@ int	main(int argc, char **argv)
 	map_validator(fd);
 	if (argc <= 1)
 	{
-		write(2, "Please give map in argument \n", 30);
+		write(2, "Map unavailable \n", 30);
 		return (0);
 	}
 	ft_printf("%s \n", *argv);
