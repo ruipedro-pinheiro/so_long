@@ -98,7 +98,11 @@ int	main(int argc, char **argv)
 	int	fd;
 
 	fd = open(argv[1], O_RDONLY);
-	map_validator(fd);
+	if (!map_validator(fd))
+	{
+		write(2, "Invalid Map \n", 14);
+		return (0);
+	}
 	if (argc <= 1)
 	{
 		write(2, "Map unavailable \n", 30);

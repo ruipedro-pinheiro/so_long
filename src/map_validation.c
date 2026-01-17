@@ -17,37 +17,48 @@ char	**map_parser(int fd)
 	char	**map;
 	char	*line;
 	char	*tmp;
-	char	*one_line_map;
+	char	*big;
 
-	one_line_map = ft_strdup("");
+	big = ft_strdup("");
 	while ((line = get_next_line(fd)))
 	{
-		tmp = one_line_map;
-		one_line_map = ft_strjoin(one_line_map, line);
+		tmp = big;
+		big = ft_strjoin(big, line);
 		free(tmp);
 		free(line);
 	}
-	map = ft_split(one_line_map, '\n');
-	free(one_line_map);
+	map = ft_split(big, '\n');
+	free(big);
 	return (map);
 }
+bool	border_check(char **map)
+{
+	int	i;
+	int	j;
 
-void	display_map(int fd)
+	j = 0;
+	i = 0;
+	while (map[0][j])
+	{
+		if (map[0][j] != '1')
+			return (false);
+		j++;
+	}
+	return (true);
+}
+bool	map_validator(int fd)
 {
 	char	**map;
 	int		i;
 
 	i = 0;
 	map = map_parser(fd);
+	if (!border_check(map))
+		return (false);
 	while (map[i])
 	{
 		ft_printf("%s\n", map[i]);
 		i++;
 	}
-}
-
-bool	map_validator(int fd)
-{
-	display_map(fd);
 	return (true);
 }
