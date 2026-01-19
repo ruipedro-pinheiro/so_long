@@ -33,33 +33,60 @@ char	**map_parser(int fd)
 	free(big);
 	return (map);
 }
-bool	border_check(char **map)
+
+int	vertical_border_check(char **map)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	len = ft_strlen(map[0]);
+	i = 0;
+	j = 0;
+	if (!map)
+		return (0);
+	while (map[i][j])
+	{
+		if (map[i][0] != '1')
+			return (0);
+		if (map[i][len] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	horizontal_border_check(char **map)
 {
 	int	i;
 	int	j;
 
+	i = 0;
 	j = 0;
 	if (!map)
-		return (NULL);
+		return (0);
 	while (map[0][j])
 	{
 		if (map[0][j] != '1')
-			return (false);
+			return (0);
 		j++;
 	}
 	i = 0;
 	j = 0;
+	if (!vertical_border_check(map))
+		return (false);
 	while (map[i + 2])
 		i++;
 	while (map[i][j])
 	{
 		if (map[i + 1][j] != '1')
-			return (false);
+			return (0);
 		j++;
 	}
-	return (true);
+	return (1);
 }
-bool	map_validator(int fd)
+
+int	map_validator(int fd)
 {
 	char	**map;
 	int		i;
@@ -67,13 +94,13 @@ bool	map_validator(int fd)
 	i = 0;
 	map = map_parser(fd);
 	if (!map)
-		return (NULL);
-	if (!border_check(map))
-		return (false);
+		return (0);
+	if (!horizontal_border_check(map))
+		return (0);
 	while (map[i])
 	{
 		ft_printf("%s\n", map[i]);
 		i++;
 	}
-	return (true);
+	return (1);
 }

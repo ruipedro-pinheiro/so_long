@@ -40,7 +40,7 @@ typedef struct s_data
 	int		cur_img;
 }			t_data;
 
-bool		map_validator(int fd);
+int			map_validator(int fd);
 char		**map_parser(int fd);
 
 #endif
