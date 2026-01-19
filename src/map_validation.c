@@ -37,20 +37,20 @@ char	**map_parser(int fd)
 int	vertical_border_check(char **map)
 {
 	int	i;
-	int	j;
 	int	len;
 
-	len = ft_strlen(map[0]);
-	i = 0;
-	j = 0;
+	len = ft_strlen(map[0] - 1);
+	i = 1;
 	if (!map)
 		return (0);
-	while (map[i][j])
+	while (map[i][len] || **map)
 	{
 		if (map[i][0] != '1')
 			return (0);
 		if (map[i][len] != '1')
 			return (0);
+		if (!map[i + 1])
+			return (1);
 		i++;
 	}
 	return (1);
@@ -63,8 +63,6 @@ int	horizontal_border_check(char **map)
 
 	i = 0;
 	j = 0;
-	if (!map)
-		return (0);
 	while (map[0][j])
 	{
 		if (map[0][j] != '1')
