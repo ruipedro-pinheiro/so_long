@@ -98,14 +98,14 @@ int	main(int argc, char **argv)
 	int	fd;
 
 	fd = open(argv[1], O_RDONLY);
+	if (argc <= 1 || fd < 0)
+	{
+		write(2, "Map unavailable \n", 17);
+		return (0);
+	}
 	if (!map_validator(fd))
 	{
 		write(2, "Invalid Map \n", 14);
-		return (0);
-	}
-	if (argc <= 1)
-	{
-		write(2, "Map unavailable \n", 30);
 		return (0);
 	}
 	ft_printf("%s \n", *argv);

@@ -19,6 +19,8 @@ char	**map_parser(int fd)
 	char	*tmp;
 	char	*big;
 
+	if (fd < 0)
+		return (NULL);
 	big = ft_strdup("");
 	while ((line = get_next_line(fd)))
 	{
@@ -37,10 +39,21 @@ bool	border_check(char **map)
 	int	j;
 
 	j = 0;
-	i = 0;
+	if (!map)
+		return (NULL);
 	while (map[0][j])
 	{
 		if (map[0][j] != '1')
+			return (false);
+		j++;
+	}
+	i = 0;
+	j = 0;
+	while (map[i + 2])
+		i++;
+	while (map[i][j])
+	{
+		if (map[i + 1][j] != '1')
 			return (false);
 		j++;
 	}
@@ -53,6 +66,8 @@ bool	map_validator(int fd)
 
 	i = 0;
 	map = map_parser(fd);
+	if (!map)
+		return (NULL);
 	if (!border_check(map))
 		return (false);
 	while (map[i])
