@@ -46,9 +46,9 @@ int	vertical_border_check(char **map)
 	while (map[i][len] || **map)
 	{
 		if (map[i][0] != '1')
-			return (0);
+			return (free(map), 0);
 		if (map[i][len] != '1')
-			return (0);
+			return (free(map), 0);
 		if (!map[i + 1])
 			return (1);
 		i++;
@@ -66,35 +66,37 @@ int	horizontal_border_check(char **map)
 	while (map[0][j])
 	{
 		if (map[0][j] != '1')
-			return (0);
+			return (free(map), 0);
 		j++;
 	}
 	i = 0;
 	j = 0;
 	if (!vertical_border_check(map))
-		return (false);
+		return (free(map), false);
 	while (map[i + 2])
 		i++;
 	while (map[i][j])
 	{
 		if (map[i + 1][j] != '1')
-			return (0);
+			return (free(map), 0);
 		j++;
 	}
 	return (1);
 }
 
-int	map_validator(int fd)
+int	map_validator(char **argv)
 {
 	char	**map;
 	int		i;
+	int		fd;
 
+	fd = open(argv[1], O_RDONLY);
 	i = 0;
 	map = map_parser(fd);
 	if (!map)
 		return (0);
 	if (!horizontal_border_check(map))
-		return (0);
+		return (free(map), 0);
 	while (map[i])
 	{
 		ft_printf("%s\n", map[i]);

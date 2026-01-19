@@ -38,9 +38,10 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img;
 	int		cur_img;
+	int		fd;
 }			t_data;
 
-int			map_validator(int fd);
+int			map_validator(char **argv);
 char		**map_parser(int fd);
 
 #endif
