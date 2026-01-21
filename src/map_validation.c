@@ -6,7 +6,7 @@
 /*   By: rpinheir <rpinhier@student.42Lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:03:37 by rpinheir          #+#    #+#             */
-/*   Updated: 2026/01/13 15:28:17 by rpinheir         ###   ########.ch       */
+/*   Updated: 2026/01/21 11:46:48 by rpinheir         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ char	**map_parser(int fd)
 	if (fd < 0)
 		return (NULL);
 	big = ft_strdup("");
-	while ((line = get_next_line(fd)))
+	while (1)
 	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
 		tmp = big;
 		big = ft_strjoin(big, line);
 		free(tmp);
@@ -97,10 +100,5 @@ int	map_validator(char **argv)
 		return (0);
 	if (!horizontal_border_check(map))
 		return (free(map), 0);
-	while (map[i])
-	{
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
 	return (1);
 }

@@ -31,6 +31,7 @@ int	close_window(t_data *data)
 	free(data->win_ptr);
 	return (0);
 }
+
 void	display_sprite(t_data *data, int y, int x)
 {
 	char	**map;
@@ -63,11 +64,7 @@ int	render(t_data *data)
 	}
 	return (0);
 }
-void	ft_clean(t_data *data)
-{
-	free(data->mlx_ptr);
-	free(data->win_ptr);
-}
+
 int	graphic_management(t_data data)
 {
 	int	height;
@@ -82,8 +79,7 @@ int	graphic_management(t_data data)
 			"So_long: Stardew Valley");
 	if (data.win_ptr == NULL)
 	{
-		free(data.win_ptr);
-		return (1);
+		return (free(data.win_ptr), 1);
 	}
 	data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, "assets/ground.xpm",
 			&width, &height);
@@ -95,7 +91,6 @@ int	graphic_management(t_data data)
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
 	mlx_destroy_display(data.mlx_ptr);
-	ft_clean(&data);
 	return (0);
 }
 

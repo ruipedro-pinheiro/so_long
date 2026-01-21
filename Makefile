@@ -35,6 +35,7 @@ LIBFT_DIR	= libft
 # Add your source files here
 SRCS		= $(SRC_DIR)/main.c \
 				$(SRC_DIR)/map_validation.c \
+				$(SRC_DIR)/display_sprite.c \
 
 SRCS_BONUS	= $(SRC_DIR)/main_bonus.c
 

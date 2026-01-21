@@ -43,5 +43,7 @@ typedef struct s_data
 
 int			map_validator(char **argv);
 char		**map_parser(int fd);
+void		display_map(t_data *data);
+void		display_sprite(t_data data);
 
 #endif
