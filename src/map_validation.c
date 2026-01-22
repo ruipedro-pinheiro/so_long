@@ -12,6 +12,21 @@
 
 #include "../include/so_long.h"
 
+void	free_map(char **map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
 char	**map_parser(int fd)
 {
 	char	**map;
@@ -42,16 +57,16 @@ int	vertical_border_check(char **map)
 	int	i;
 	int	len;
 
-	len = ft_strlen(map[0] - 1);
-	i = 1;
 	if (!map)
 		return (0);
-	while (map[i][len] || **map)
+	len = ft_strlen(map[0]) - 1;
+	i = 1;
+	while (map[i])
 	{
 		if (map[i][0] != '1')
-			return (free(map), 0);
+			return (0);
 		if (map[i][len] != '1')
-			return (free(map), 0);
+			return (0);
 		if (!map[i + 1])
 			return (1);
 		i++;
@@ -69,19 +84,19 @@ int	horizontal_border_check(char **map)
 	while (map[0][j])
 	{
 		if (map[0][j] != '1')
-			return (free(map), 0);
+			return (0);
 		j++;
 	}
 	i = 0;
 	j = 0;
 	if (!vertical_border_check(map))
-		return (free(map), false);
+		return (0);
 	while (map[i + 2])
 		i++;
 	while (map[i][j])
 	{
 		if (map[i + 1][j] != '1')
-			return (free(map), 0);
+			return (0);
 		j++;
 	}
 	return (1);
@@ -90,15 +105,17 @@ int	horizontal_border_check(char **map)
 int	map_validator(char **argv)
 {
 	char	**map;
-	int		i;
 	int		fd;
 
 	fd = open(argv[1], O_RDONLY);
-	i = 0;
+	if (fd < 0)
+		return (0);
 	map = map_parser(fd);
+	close(fd);
 	if (!map)
 		return (0);
 	if (!horizontal_border_check(map))
-		return (free(map), 0);
+		return (free_map(map), 0);
+	free_map(map);
 	return (1);
 }

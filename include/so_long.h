@@ -37,13 +37,15 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
+	char	**map;
 	int		cur_img;
 	int		fd;
 }			t_data;
 
 int			map_validator(char **argv);
 char		**map_parser(int fd);
-void		display_map(t_data *data);
-void		display_sprite(t_data data);
+void		free_map(char **map);
+void		display_map(t_data *data, char **map);
+void		display_sprite(t_data *data, char **map, int y, int x);
 
 #endif

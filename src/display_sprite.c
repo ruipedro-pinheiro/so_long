@@ -12,13 +12,14 @@
 
 #include "../include/so_long.h"
 
-void	display_map(t_data *data)
+void	display_map(t_data *data, char **map)
 {
 	int		i;
-	char	**map;
 
+	(void)data;
 	i = 0;
-	map = map_parser(data->fd);
+	if (!map)
+		return ;
 	while (map[i])
 	{
 		ft_printf("%s\n", map[i]);
@@ -26,14 +27,9 @@ void	display_map(t_data *data)
 	}
 }
 
-void	display_sprite(t_data data)
+void	display_sprite(t_data *data, char **map, int y, int x)
 {
-	int	width;
-	int	height;
-
-	width = 0;
-	height = 0;
-	display_map(&data);
-	data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, "assets/ground.xpm",
-			&width, &height);
+	(void)map;
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img.mlx_img, x, y);
 }

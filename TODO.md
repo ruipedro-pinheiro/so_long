@@ -1,48 +1,58 @@
-# TODO - SO_LONG
+# SO_LONG - TODO
 
-## MAP-PARSING
-### Map validation
-### Map generation (optional)
+## 1. MAP VALIDATION
+- [ ] Check extension `.ber`
+- [ ] Check caracteres valides (0, 1, C, E, P uniquement)
+- [ ] Check exactement 1 `P` (player)
+- [ ] Check exactement 1 `E` (exit)
+- [ ] Check au moins 1 `C` (collectible)
+- [ ] Check map rectangulaire
+- [ ] Check bordures (murs partout)
+- [ ] **Flood fill** - verifier chemin valide (P -> tous C -> E)
+- [ ] Messages d'erreur: "Error\n" + message explicite
 
-## Minilibx
-### Show xpm image in window
-### Make it move it when typing W A S D keys
-### Scale to 128x128 (from 16x16)
-### Render animations
-### Add collisions
+## 2. PARSING & DATA
+- [x] Parser la map (GNL + split)
+- [ ] Stocker position player (x, y)
+- [ ] Stocker position exit
+- [ ] Compter collectibles
+- [ ] Stocker dimensions map (width, height)
 
-## Pixel art (128x128 .xpm)
+## 3. GRAPHICS
+- [x] Init MLX + fenetre
+- [ ] Taille fenetre = map * tile_size
+- [ ] Charger sprites XPM (wall, floor, player, exit, collectible)
+- [ ] Render map selon contenu
+- [x] ESC ferme proprement
+- [x] Click X ferme proprement
 
-### PLAYER (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Non-Playable_Characters_-_Dwarf.png`)
-- [ ] dwarf.png (idle frame)
-- [ ] dwarf animation frames (optional)
+## 4. GAMEPLAY
+- [ ] Mouvement WASD (ou fleches)
+- [ ] Bloquer sur murs (1)
+- [ ] Collecter C (disparait)
+- [ ] Exit bloque tant que C restants
+- [ ] Exit quand tous C + sur E = victoire
+- [ ] Compteur mouvements (ft_printf dans shell)
 
-### WALLS (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Tilesets_-_Sewer.png`)
+## 5. CLEAN EXIT
+- [ ] Free toute la memoire
+- [ ] Destroy images MLX
+- [ ] Destroy window + display
 
-#### TODO - Outer corners
-- [ ] bottom-left-corner.png
-- [ ] bottom-right-corner.png
+---
 
-#### TODO - Inner corners
-- [ ] inner-top-left.png
-- [ ] inner-top-right.png
-- [ ] inner-bottom-left.png
-- [ ] inner-bottom-right.png
+## BONUS (apres mandatory PARFAIT)
+- [ ] Ennemis qui patrouillent
+- [ ] Animations sprites
+- [ ] Compteur a l'ecran (pas shell)
 
-### FLOOR (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Tilesets_-_Sewer.png`)
-- [ ] Make floor less repetitive by making a fake random and display sometimes different ground tiles; like if x % 1/4 == display type-1, or type-2 etc...
-### EXIT (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Tilesets_-_Sewer.png`)
-- [ ] exit.png (ladder from sewer tileset)
+---
 
-### ENEMY (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Monsters_-_Monsters.png`)
-#### Done (PNG in assets/Ennemy/)
-- [x] Down/ (4 frames)
-- [x] Up/
-- [x] Left/
-- [x] Right/
-- [x] Dead/
+## ASSETS (Stardew Valley theme)
+- [x] ground.xpm
+- [ ] wall.xpm
+- [ ] player.xpm
+- [ ] exit.xpm
+- [ ] collectible.xpm
 
-### COLLECTIBLE (depuis `assets/to-cut/PC___Computer_-_Stardew_Valley_-_Environment_-_Mines.png`)
-- [ ] collectible.png (gem/ore)
-
-#### | *Author: rpinheir* |
+*Author: rpinheir*
