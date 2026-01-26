@@ -61,7 +61,7 @@ int	graphic_management(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1925, 1285,
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 896,
 			"So_long: Stardew Valley");
 	if (data->win_ptr == NULL)
 		return (1);
@@ -72,6 +72,7 @@ int	graphic_management(t_data *data)
 	mlx_loop(data->mlx_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->img.ground);
 	mlx_destroy_image(data->mlx_ptr, data->img.wall);
+	mlx_destroy_image(data->mlx_ptr, data->img.exit);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	return (0);

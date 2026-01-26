@@ -47,6 +47,12 @@ int	display_sprite(t_data *data, char **map, int y, int x)
 	else if (map[i][j] == '1')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.wall, x,
 			y);
+	else if (map[i][j] == 'E')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.exit, x,
+			y);
+	else if (map[i][j] == 'C')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img.collectible, x, y);
 	return (0);
 }
 
@@ -65,6 +71,22 @@ int	get_wall_img(t_data *data)
 			&data->img.line_len, &data->img.endian);
 	return (0);
 }
+int	set_exit_img(t_data *data)
+{
+	int	width;
+	int	height;
+
+	width = 128;
+	height = 128;
+	data->img.exit = mlx_xpm_file_to_image(data->mlx_ptr, "assets/exit.xpm",
+			&width, &height);
+	if (data->img.exit == NULL)
+		return (1);
+	data->img.addr = mlx_get_data_addr(data->img.exit, &data->img.bpp,
+			&data->img.line_len, &data->img.endian);
+	return (0);
+}
+
 int	set_ground_img(t_data *data)
 {
 	int	width;
@@ -81,9 +103,27 @@ int	set_ground_img(t_data *data)
 	return (0);
 }
 
+int	set_collectible_img(t_data *data)
+{
+	int	width;
+	int	height;
+
+	width = 128;
+	height = 128;
+	data->img.collectible = mlx_xpm_file_to_image(data->mlx_ptr,
+			"assets/cat.xpm", &width, &height);
+	if (data->img.collectible == NULL)
+		return (1);
+	data->img.addr = mlx_get_data_addr(data->img.collectible, &data->img.bpp,
+			&data->img.line_len, &data->img.endian);
+	return (0);
+}
+
 int	set_image(t_data *data)
 {
 	set_ground_img(data);
 	get_wall_img(data);
+	set_exit_img(data);
+	set_collectible_img(data);
 	return (0);
 }
