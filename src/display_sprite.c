@@ -41,7 +41,7 @@ int	display_sprite(t_data *data, char **map, int y, int x)
 		i = y / 128;
 		j = x / 128;
 	}
-	if (map[i][j] == '0')
+	if (map[i][j] == '0' || map[i][j] == 'P')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ground,
 			x, y);
 	else if (map[i][j] == '1')
