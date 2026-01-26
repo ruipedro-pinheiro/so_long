@@ -50,7 +50,7 @@ int	render(t_data *data)
 			x = 0;
 			y = y + res;
 		}
-		if (y > 6)
+		if (y > 768)
 			break ;
 	}
 	return (0);
