@@ -43,7 +43,6 @@ typedef struct s_data
 	t_img	img;
 	char	**map;
 	int		cur_img;
-	int		fd;
 }			t_data;
 
 int			map_validator(char **argv);
