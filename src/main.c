@@ -44,6 +44,7 @@ int	render(t_data *data)
 	while (1)
 	{
 		display_sprite(data, data->map, y, x);
+		x = x + res;
 		if (x > 1792)
 		{
 			x = 0;
@@ -51,7 +52,6 @@ int	render(t_data *data)
 		}
 		if (y > 6)
 			break ;
-		x = x + res;
 	}
 	return (0);
 }
@@ -61,7 +61,7 @@ int	graphic_management(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1280,
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1925, 1285,
 			"So_long: Stardew Valley");
 	if (data->win_ptr == NULL)
 		return (1);
