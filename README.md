@@ -25,6 +25,7 @@ make
 ```
 ./so_long map.ber
 ```
+![WIP SO_LONG](./assets/wip.png)
 
 ## Ressources
 Using currently [This website](https://harm-smits.github.io/42docs/libs/minilibx) for documentation purposes, this is a good start but it lacks info on specific cases like in so_long where we dont need to display lines and pixels manually (like it could be with FdF), as in so_long i must work with .xpm sprites (images used as 2d textures for a game).
