@@ -25,7 +25,11 @@
 
 typedef struct s_img
 {
-	void	*mlx_img;
+	void	*ground;
+	void	*wall;
+	void	*player;
+	void	*collectible;
+	void	*exit;
 	char	*addr;
 	int		bpp;
 	int		line_len;
@@ -47,5 +51,6 @@ char		**map_parser(int fd);
 void		free_map(char **map);
 void		display_map(t_data *data, char **map);
 void		display_sprite(t_data *data, char **map, int y, int x);
+int			set_image(t_data *data);
 
 #endif

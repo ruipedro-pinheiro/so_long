@@ -30,7 +30,6 @@ int	close_window(t_data *data)
 	return (0);
 }
 
-
 int	render(t_data *data)
 {
 	int	y;
@@ -57,11 +56,6 @@ int	render(t_data *data)
 
 int	graphic_management(t_data *data)
 {
-	int	height;
-	int	width;
-
-	height = 32;
-	width = 32;
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);
@@ -69,17 +63,12 @@ int	graphic_management(t_data *data)
 			"So_long: Stardew Valley");
 	if (data->win_ptr == NULL)
 		return (1);
-	data->img.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/ground.xpm",
-			&width, &height);
-	if (data->img.mlx_img == NULL)
-		return (1);
-	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
-			&data->img.line_len, &data->img.endian);
+	set_image(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, 0, &close_window, data);
 	mlx_loop(data->mlx_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+	mlx_destroy_image(data->mlx_ptr, data->img.ground);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	return (0);
@@ -91,7 +80,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(2, "Usage: ./so_long <map.ber>\n", 27);
+		write(2, "Usage: ./so_long maps/map.ber\n", 27);
 		return (1);
 	}
 	if (!map_validator(argv))
@@ -113,6 +102,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	graphic_management(&data);
+	display_map(&data, data.map);
 	free_map(data.map);
 	return (0);
 }
