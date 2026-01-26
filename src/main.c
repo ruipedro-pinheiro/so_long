@@ -29,12 +29,14 @@ int	close_window(t_data *data)
 	data->win_ptr = NULL;
 	return (0);
 }
-
+// TODO = CALCULATE MAP SIZE X 128 AUTOMATICALLY ! IT IS STILL HARDCODED
 int	render(t_data *data)
 {
 	int	y;
 	int	x;
+	int	res;
 
+	res = 128;
 	y = 0;
 	x = 0;
 	if (data->win_ptr == NULL)
@@ -42,14 +44,14 @@ int	render(t_data *data)
 	while (1)
 	{
 		display_sprite(data, data->map, y, x);
-		x = x + 128;
-		if (x >= 1920)
+		if (x > 1792)
 		{
 			x = 0;
-			y = y + 128;
+			y = y + res;
 		}
-		if (y >= 1280)
+		if (y > 6)
 			break ;
+		x = x + res;
 	}
 	return (0);
 }
@@ -69,6 +71,7 @@ int	graphic_management(t_data *data)
 	mlx_hook(data->win_ptr, DestroyNotify, 0, &close_window, data);
 	mlx_loop(data->mlx_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->img.ground);
+	mlx_destroy_image(data->mlx_ptr, data->img.wall);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	return (0);

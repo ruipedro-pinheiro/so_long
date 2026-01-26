@@ -27,32 +27,29 @@ void	display_map(t_data *data, char **map)
 	}
 }
 
-void	display_sprite(t_data *data, char **map, int y, int x)
+int	display_sprite(t_data *data, char **map, int y, int x)
 {
 	int	i;
 	int	j;
 
-	(void)map;
-	i = 0;
-	j = 0;
-	while (map[i])
-	{
-		while (map[i][j])
-		{
-			if (map[i][j] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->img.ground, x, y);
-			else if (map[i][j] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->img.wall, x, y);
-			else
-				break ;
-			j++;
-		}
+	if (x == 0)
 		j = 0;
-		i++;
+	if (y == 0)
+		i = 0;
+	else
+	{
+		i = y / 128;
+		j = x / 128;
 	}
+	if (map[i][j] == '0')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ground,
+			x, y);
+	else if (map[i][j] == '1')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.wall, x,
+			y);
+	return (0);
 }
+
 int	get_wall_img(t_data *data)
 {
 	int	width;
