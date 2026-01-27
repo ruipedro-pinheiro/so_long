@@ -42,12 +42,14 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img;
 	char	**map;
+	int		map_width;
+	int		map_height;
 	int		cur_img;
 	int		fd;
 }			t_data;
 
-int			map_validator(char **argv);
-char		**map_parser(int fd);
+int			map_validator(t_data *data);
+char		**map_parser(int fd, t_data *data);
 void		free_map(char **map);
 void		display_map(t_data *data, char **map);
 int			set_image(t_data *data);

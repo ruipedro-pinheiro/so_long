@@ -56,12 +56,12 @@ int	display_sprite(t_data *data, char **map, int y, int x)
 	return (0);
 }
 
-int	get_wall_img(t_data *data)
+int	set_wall_img(t_data *data)
 {
 	int	width;
 	int	height;
 
-	width = 124;
+	width = 128;
 	height = 128;
 	data->img.wall = mlx_xpm_file_to_image(data->mlx_ptr, "assets/wall.xpm",
 			&width, &height);
@@ -122,7 +122,7 @@ int	set_collectible_img(t_data *data)
 int	set_image(t_data *data)
 {
 	set_ground_img(data);
-	get_wall_img(data);
+	set_wall_img(data);
 	set_exit_img(data);
 	set_collectible_img(data);
 	return (0);

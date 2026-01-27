@@ -20,6 +20,18 @@ int	handle_keypress(int keysym, t_data *data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
+	if (keysym == XK_w || keysym == XK_W)
+	{ // move_map_downwards();
+	}
+	if (keysym == XK_d || keysym == XK_D)
+	{ // move_map_left();
+	}
+	if (keysym == XK_a || keysym == XK_A)
+	{ // move_map_right();
+	}
+	if (keysym == XK_s || keysym == XK_S)
+	{ // move_map_upwards();
+	}
 	return (0);
 }
 
@@ -45,12 +57,12 @@ int	render(t_data *data)
 	{
 		display_sprite(data, data->map, y, x);
 		x = x + res;
-		if (x > 1792)
+		if (x > data->map_width * 128)
 		{
 			x = 0;
 			y = y + res;
 		}
-		if (y > 768)
+		if (y > data->map_height * 128)
 			break ;
 	}
 	return (0);
@@ -84,10 +96,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(2, "Usage: ./so_long maps/map.ber\n", 27);
+		write(2, "Usage: ./so_long maps/map.ber\n", 30);
 		return (1);
 	}
-	if (!map_validator(argv))
+	if (!map_validator(&data))
 	{
 		write(2, "Invalid Map\n", 12);
 		return (1);
@@ -98,15 +110,15 @@ int	main(int argc, char **argv)
 		write(2, "Error opening map\n", 18);
 		return (1);
 	}
-	data.map = map_parser(data.fd);
+	data.map = map_parser(data.fd, &data);
 	close(data.fd);
 	if (!data.map)
 	{
 		write(2, "Error parsing map\n", 18);
 		return (1);
 	}
-	graphic_management(&data);
 	display_map(&data, data.map);
+	graphic_management(&data);
 	free_map(data.map);
 	return (0);
 }

@@ -27,13 +27,14 @@ void	free_map(char **map)
 	free(map);
 }
 
-char	**map_parser(int fd)
+char	**map_parser(int fd, t_data *data)
 {
 	char	**map;
 	char	*line;
-	char	*tmp;
 	char	*big;
+	int		map_height;
 
+	map_height = 0;
 	if (fd < 0)
 		return (NULL);
 	big = ft_strdup("");
@@ -42,13 +43,14 @@ char	**map_parser(int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		tmp = big;
+		data->map_width = ft_strlen(line) - 1;
 		big = ft_strjoin(big, line);
-		free(tmp);
 		free(line);
+		map_height++;
 	}
 	map = ft_split(big, '\n');
 	free(big);
+	data->map_height = map_height - 1;
 	return (map);
 }
 
@@ -102,20 +104,18 @@ int	horizontal_border_check(char **map)
 	return (1);
 }
 
-int	map_validator(char **argv)
+int	map_validator(t_data *data)
 {
-	char	**map;
-	int		fd;
+	int	fd;
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (0);
-	map = map_parser(fd);
+	fd = open("maps/map.ber", O_RDONLY);
+	data->fd = fd;
+	data->map = map_parser(data->fd, data);
 	close(fd);
-	if (!map)
+	if (!data->map)
 		return (0);
-	if (!horizontal_border_check(map))
-		return (free_map(map), 0);
-	free_map(map);
+	if (!horizontal_border_check(data->map))
+		return (free_map(data->map), 0);
+	free_map(data->map);
 	return (1);
 }
