@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpinheir <rpinheir@student.42lausanne.ch>    +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 static int	setup_window(t_game *game)
 {
@@ -42,6 +42,7 @@ static void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->win, KeyPress, KeyPressMask, (void *)handle_keypress, game);
 	mlx_hook(game->win, DestroyNotify, 0, (void *)close_game, game);
+	mlx_loop_hook(game->mlx, (void *)render, game);
 }
 
 int	main(int argc, char **argv)
@@ -49,7 +50,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (error_msg("Usage: ./so_long <map.ber>"));
+		return (error_msg("Usage: ./so_long_bonus <map.ber>"));
 	if (!check_extension(argv[1], ".ber"))
 		return (error_msg("Error\nInvalid file extension (need .ber)"));
 	if (!init_game(&game, argv[1]))
@@ -58,9 +59,8 @@ int	main(int argc, char **argv)
 		return (error_exit(&game, "Error\nFailed to create window"));
 	if (!load_sprites(&game))
 		return (error_exit(&game, "Error\nFailed to load sprites"));
+	init_enemies(&game);
 	setup_hooks(&game);
-	update_camera(&game);
-	render_game(&game);
 	mlx_loop(game.mlx);
 	cleanup_game(&game);
 	return (0);
