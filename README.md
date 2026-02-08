@@ -66,4 +66,4 @@ Maps use `.ber` files with these characters:
 
 ### AI usage
 
-AI tools (Claude Code) were used to assist with debugging enemy collision logic and fixing memory leaks in error paths. All code was reviewed and tested manually.
+AI tools (Claude Code) were used to assist with debugging enemy collision logic and fixing memory leaks in error paths. All code was coded and tested manually.
