@@ -2,37 +2,25 @@
 
 ## Description
 
-So_long is a small 2D game built in C using MiniLibX. The player navigates a map, collects items, and reaches the exit. The game reads `.ber` map files, validates them (rectangular, walled, valid path via flood fill), and renders a tile-based view with camera scrolling.
+So_long is a small 2D game built in C using the MiniLibX graphical library. The player must collect all collectibles on the map and then reach the exit. The game reads `.ber` map files, validates them, and renders a tile-based 2D view with camera scrolling for large maps.
 
-The mandatory part handles basic gameplay with WASD movement and a move counter in the terminal.
-
-The bonus part adds:
-- **Enemy patrols**: enemies move horizontally and kill the player on contact
-- **Sprite animation**: 4-frame animations for player and enemies
-- **On-screen move counter**: displayed directly on the game window
+The map is validated for: rectangular shape, wall enclosure, valid characters (0, 1, C, E, P), exactly 1 player, exactly 1 exit, at least 1 collectible, and a valid path using flood fill.
 
 ## Instructions
 
 ### Compilation
 
 ```bash
-make        # Build mandatory version
-make bonus  # Build bonus version (enemies + animation)
+make        # Build so_long
 make clean  # Remove object files
-make fclean # Full clean (objects + binaries)
+make fclean # Full clean (objects + binary)
 make re     # Rebuild from scratch
 ```
 
 ### Execution
 
-**Mandatory:**
 ```bash
 ./so_long maps/map.ber
-```
-
-**Bonus:**
-```bash
-./so_long_bonus maps/bonus.ber
 ```
 
 ### Controls
@@ -45,25 +33,18 @@ make re     # Rebuild from scratch
 | D / Right | Move right |
 | ESC | Quit |
 
-## Map Format
-
-Maps use `.ber` files with these characters:
-
-| Char | Meaning |
-|------|---------|
-| 1 | Wall |
-| 0 | Empty space |
-| P | Player start (exactly 1) |
-| E | Exit (exactly 1) |
-| C | Collectible (at least 1) |
-| X | Enemy (bonus only) |
+The current number of movements is displayed in the shell at every move.
 
 ## Resources
 
 - [MiniLibX documentation](https://harm-smits.github.io/42docs/libs/minilibx)
-- [pipe(2) - Linux man page](https://man7.org/linux/man-pages/man2/pipe.2.html)
-- [dup2(2) - Linux man page](https://man7.org/linux/man-pages/man2/dup2.2.html)
+- [42 Docs - so_long](https://harm-smits.github.io/42docs/projects/so_long)
+- [X11 events reference](https://tronche.com/gui/x/xlib/events/)
 
 ### AI usage
 
-AI tools (Claude Code) were used to assist with debugging enemy collision logic and fixing memory leaks in error paths. All code was coded and tested manually.
+AI tools (Claude Code) were used to assist with the following tasks:
+- **Debugging memory leaks**: identifying missing `free()` calls in error paths during map parsing and cleanup
+
+
+All code was written, understood, and tested manually. AI was used as a support tool for review and debugging, not for code generation.

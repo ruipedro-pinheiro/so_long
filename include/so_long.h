@@ -18,14 +18,12 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
-# include <stdbool.h>
 # include <stdlib.h>
 
 # define TILE_SIZE 128
 # define MAX_WIN_W 1280
 # define MAX_WIN_H 720
 # define MSG_WIN "You escaped! Moves: "
-# define MSG_LOSE "Game Over!"
 
 typedef struct s_pos
 {
@@ -135,6 +133,5 @@ int			error_exit(t_game *game, char *msg);
 /* utils.c */
 int			ft_strcmp(const char *s1, const char *s2);
 int			check_extension(char *file, char *ext);
-char		*ft_strjoin_free(char *s1, char *s2);
 
 #endif

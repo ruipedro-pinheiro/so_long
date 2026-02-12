@@ -35,12 +35,3 @@ int	check_extension(char *file, char *ext)
 		return (0);
 	return (ft_strcmp(file + file_len - ext_len, ext) == 0);
 }
-
-char	*ft_strjoin_free(char *s1, char *s2)
-{
-	char	*result;
-
-	result = ft_strjoin(s1, s2);
-	free(s1);
-	return (result);
-}

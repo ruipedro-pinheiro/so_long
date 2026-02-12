@@ -1,14 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
-#    so_long                                                                   #
-#                                                                              #
-#    By: rpinheir <rpinheir@student.42lausanne.ch>                             #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rpinheir <rpinheir@student.42lausanne.ch>    +#+  +:+       +#+       #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/02/04 15:51:54 by rpinheir          #+#    #+#              #
+#    Updated: 2026/02/12 10:00:00 by rpinheir         ###   ########.ch        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
-NAME_BONUS	= so_long_bonus
-
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g
 MLX_DIR		= minilibx-linux
@@ -16,9 +18,7 @@ MLX			= $(MLX_DIR)/libmlx.a
 MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 SRC_DIR		= src
-SRC_BONUS	= src_bonus
 OBJ_DIR		= obj
-OBJ_BONUS	= obj_bonus
 INC_DIR		= include
 LIBFT_DIR	= libft
 
@@ -35,23 +35,7 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/error.c \
 			  $(SRC_DIR)/utils.c
 
-SRCS_BONUS	= $(SRC_BONUS)/main_bonus.c \
-			  $(SRC_BONUS)/init_bonus.c \
-			  $(SRC_BONUS)/map_parse_bonus.c \
-			  $(SRC_BONUS)/map_validate_bonus.c \
-			  $(SRC_BONUS)/map_pathfind_bonus.c \
-			  $(SRC_BONUS)/sprites_bonus.c \
-			  $(SRC_BONUS)/render_bonus.c \
-			  $(SRC_BONUS)/player_bonus.c \
-			  $(SRC_BONUS)/game_bonus.c \
-			  $(SRC_BONUS)/cleanup_bonus.c \
-			  $(SRC_BONUS)/error_bonus.c \
-			  $(SRC_BONUS)/utils_bonus.c \
-			  $(SRC_BONUS)/enemy_bonus.c \
-			  $(SRC_BONUS)/animation_bonus.c
-
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-OBJS_BONUS	= $(SRCS_BONUS:$(SRC_BONUS)/%.c=$(OBJ_BONUS)/%.o)
 
 LIBFT		= $(LIBFT_DIR)/libft.a
 
@@ -79,34 +63,23 @@ $(LIBFT):
 	@printf "$(YELLOW)Building libft...$(RESET)\n"
 	@$(MAKE) -C $(LIBFT_DIR) --silent
 
-bonus: $(MLX) $(LIBFT) $(NAME_BONUS)
-	@printf "$(GREEN)so_long_bonus ready!$(RESET)\n"
-
-$(NAME_BONUS): $(OBJS_BONUS)
-	@printf "$(CYAN)Linking $(NAME_BONUS)...$(RESET)\n"
-	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX_FLAGS) -o $(NAME_BONUS)
-
-$(OBJ_BONUS)/%.o: $(SRC_BONUS)/%.c
-	@mkdir -p $(OBJ_BONUS)
-	@$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR) -c $< -o $@
-
 clean:
-	@rm -rf $(OBJ_DIR) $(OBJ_BONUS)
+	@rm -rf $(OBJ_DIR)
 	@$(MAKE) -C $(LIBFT_DIR) clean --silent
 	@printf "$(YELLOW)Objects cleaned$(RESET)\n"
 
 fclean: clean
-	@rm -f $(NAME) $(NAME_BONUS)
+	@rm -f $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean --silent
 	@printf "$(YELLOW)Executables removed$(RESET)\n"
 
 re: fclean all
 
 norm:
-	@norminette $(SRC_DIR) $(SRC_BONUS) $(INC_DIR) | grep -E "Error" || \
+	@norminette $(SRC_DIR) $(INC_DIR) | grep -E "Error" || \
 		printf "$(GREEN)Norminette OK$(RESET)\n"
 
 run: all
 	./$(NAME) maps/map.ber
 
-.PHONY: all clean fclean re bonus norm run
+.PHONY: all clean fclean re norm run
