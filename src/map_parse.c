@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinheir <rpinheir@student.42lausanne.ch>    +#+  +:+       +#+      */
+/*   By: rpinheir <rpinhier@student.42Lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 10:00:00 by rpinheir          #+#    #+#             */
-/*   Updated: 2026/01/29 10:00:00 by rpinheir         ###   ########.ch       */
+/*   Created: 2026/02/13 13:29:08 by rpinheir          #+#    #+#             */
+/*   Updated: 2026/02/13 13:29:09 by rpinheir         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
