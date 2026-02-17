@@ -6,7 +6,7 @@
 /*   By: rpinheir <rpinheir@student.42lausanne.ch>    +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 12:28:53 by rpinheir          #+#    #+#             */
-/*   Updated: 2026/01/29 10:00:00 by rpinheir         ###   ########.ch       */
+/*   Updated: 2026/02/17 13:38:41 by rpinheir         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <stdlib.h>
-
-# define TILE_SIZE 128
-# define MAX_WIN_W 1280
-# define MAX_WIN_H 720
-# define MSG_WIN "You escaped! Moves: "
 
 typedef struct s_pos
 {

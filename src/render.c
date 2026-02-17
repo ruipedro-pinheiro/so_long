@@ -6,7 +6,7 @@
 /*   By: rpinheir <rpinheir@student.42lausanne.ch>    +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:00:00 by rpinheir          #+#    #+#             */
-/*   Updated: 2026/01/30 22:00:00 by rpinheir         ###   ########.ch       */
+/*   Updated: 2026/02/17 13:40:36 by rpinheir         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static void	put_img(t_game *game, void *img, int x, int y)
 
 	if (!img)
 		return ;
-	sx = x * TILE_SIZE - game->cam.x;
-	sy = y * TILE_SIZE - game->cam.y;
-	if (sx + TILE_SIZE < 0 || sx > game->win_w)
+	sx = x * 128 - game->cam.x;
+	sy = y * 128 - game->cam.y;
+	if (sx + 128 < 0 || sx > game->win_w)
 		return ;
-	if (sy + TILE_SIZE < 0 || sy > game->win_h)
+	if (sy + 128 < 0 || sy > game->win_h)
 		return ;
 	mlx_put_image_to_window(game->mlx, game->win, img, sx, sy);
 }

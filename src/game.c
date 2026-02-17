@@ -6,7 +6,7 @@
 /*   By: rpinheir <rpinheir@student.42lausanne.ch>    +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:00:00 by rpinheir          #+#    #+#             */
-/*   Updated: 2026/01/29 10:00:00 by rpinheir         ###   ########.ch       */
+/*   Updated: 2026/02/17 13:37:00 by rpinheir         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	update_camera(t_game *game)
 	int	map_pw;
 	int	map_ph;
 
-	px = game->map.player.x * TILE_SIZE + TILE_SIZE / 2;
-	py = game->map.player.y * TILE_SIZE + TILE_SIZE / 2;
+	px = game->map.player.x * 128 + 128 / 2;
+	py = game->map.player.y * 128 + 128 / 2;
 	game->cam.x = px - game->win_w / 2;
 	game->cam.y = py - game->win_h / 2;
-	map_pw = game->map.width * TILE_SIZE;
-	map_ph = game->map.height * TILE_SIZE;
+	map_pw = game->map.width * 128;
+	map_ph = game->map.height * 128;
 	if (game->cam.x < 0)
 		game->cam.x = 0;
 	if (game->cam.y < 0)
@@ -42,7 +42,7 @@ void	print_moves(int moves)
 
 void	win_game(t_game *game)
 {
-	ft_printf("\n%s%d\n", MSG_WIN, game->moves);
+	ft_printf("\n%s%d\n", "You escaped! Moves: ", game->moves);
 	game->game_over = 1;
 	close_game(game);
 }
