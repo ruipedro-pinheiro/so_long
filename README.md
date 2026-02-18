@@ -1,4 +1,5 @@
 *This project has been created as part of the 42 curriculum by rpinheir.*
+*Score: 100/100*
 
 ## Description
 
@@ -41,6 +42,7 @@ The current number of movements is displayed in the shell at every move.
 - [42 Docs - so_long](https://harm-smits.github.io/42docs/projects/so_long)
 - [X11 events reference](https://tronche.com/gui/x/xlib/events/)
 - [Sprite on itch.io By Caio Carlos of the Clockwork Raven](https://clockworkraven.itch.io/roguelike-raven-starter-set)
+- [Inspiration, so_long by dabalm](https://www.youtube.com/watch?v=-qORQ_vFXmU)
 
 
 ### AI usage
