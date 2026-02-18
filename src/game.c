@@ -37,12 +37,12 @@ void	update_camera(t_game *game)
 
 void	print_moves(int moves)
 {
-	ft_printf("Moves: %d\n", moves);
+	ft_printf("Moves: %d\r", moves);
 }
 
 void	win_game(t_game *game)
 {
-	ft_printf("\n%s%d\n", "You escaped! Moves: ", game->moves);
+	ft_printf("\n%s%d\r", "You escaped! Moves: ", game->moves);
 	game->game_over = 1;
 	close_game(game);
 }
