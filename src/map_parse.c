@@ -47,6 +47,9 @@ int	read_map_file(char *file, char **content)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (line[0] == '\n')
+			return (free(*content), free(line),
+				error_msg("Error\n empty line inside map"), 0);
 		temp = ft_strjoin(*content, line);
 		free(*content);
 		free(line);
